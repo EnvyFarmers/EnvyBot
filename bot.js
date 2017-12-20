@@ -83,29 +83,72 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				})
 			break;
 			
-			case 'hashrates':
-	
+			case 'miners':
+	         var hashRatesURL = 'http://'+auth.apiURL+'/api/miners?key='+auth.apiKey;
 				var opts = {
 				  method: 'GET',
-				  url: 'http://'+auth.apiURL+'/api/miners?key='+auth.apiKey,
+				  url: hashRatesURL,
 				  json: true
 				}
+
+            var infoRequest = args[0];
+
+            switch(infoRequest){
+               case 'hash' :
+                  get.concat(opts, function (err, res, data) {
+                     if (err) throw err
+                     var newMessage = '```==============  Hashrates ============= \n'
+                     var groups = data.groupList
+                     var totalHash = data.totalHashrates5s
+                     
+                     for(var group in groups) {
+                        newMessage += '-' + groups[group].name + '-\n'
+                        var miners = groups[group].minerList;
+                        for(var miner in miners) {
+                           newMessage += '   [' + miners[miner].name + '] ' + miners[miner].speedInfo.hashrate + '\n'
+                        } 
+                     }
+
+                     newMessage += '```'
+                    
+                     bot.sendMessage({
+                            to: channelID,
+                            message: newMessage
+                         });
+                  })
+               break;
+
+               case 'temp' :
+                  get.concat(opts, function (err, res, data) {
+                     if (err) throw err
+                     var newMessage = '```==============  GPU Temps ============= \n'
+                     var groups = data.groupList
+                     var totalHash = data.totalHashrates5s
+                     
+                     for(var group in groups) {
+                        newMessage += '-' + groups[group].name + '-\n'
+                        var miners = groups[group].minerList;
+                        for(var miner in miners) {
+                           newMessage += '   [' + miners[miner].name + ']\n'
+                           var gpus = miners[miner].gpuList;
+                           for(var gpu in gpus){
+                              newMessage += '      '+gpus[gpu].name.split(':')[0]+': ' + gpus[gpu].deviceInfo.temperature + 'c';
+                              newMessage += ' (fan ' + gpus[gpu].deviceInfo.fanPercent + '%)\n'
+                           }
+                        } 
+                     }
+
+                     newMessage += '```'
+                    
+                     bot.sendMessage({
+                            to: channelID,
+                            message: newMessage
+                         });
+                  })
+               break;
+            }
 				
-				get.concat(opts, function (err, res, data) {
-				   if (err) throw err
-				   var newMessage = '```==============  Hashrates ============= \n'
-				   var miners = data.minerList
-				   var totalHash = data.totalHashrates5s
-				   for(var miner in miners) {
-					  newMessage += '[' + miner.name + '] ' + miner.speedInfo.hashrate + 'H/s'
-				   } 
-				   newMessage += '```'
-				  
-				   bot.sendMessage({
-                      to: channelID,
-                      message: newMessage
-                   });
-				})
+
 			break;
 			break;
 
