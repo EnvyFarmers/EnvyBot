@@ -87,7 +87,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 	
 				var opts = {
 				  method: 'GET',
-				  url: 'http://68.104.95.228:17790/api/miners?key=75a5ebe34a7f4a32ad21195a2b3866e6',
+				  url: 'http://'+auth.apiURL+'/api/miners?key='+auth.apiKey,
 				  json: true
 				}
 				
