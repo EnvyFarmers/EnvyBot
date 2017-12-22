@@ -26,6 +26,7 @@ bot.on('ready', function (evt) {
 function getPrice(coin) {
 	var price = cc.price(coin,'USD')
 	.then(prices => {
+		logger.info(prices.USD);
 		return prices.USD
 	})	
 }
@@ -67,6 +68,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				  json: true
 				}
 				var etnPrice = getPrice('ETN');
+				logger.info(etnPrice);
 				
 				get.concat(opts, function (err, res, data) {
 				   if (err) throw err
