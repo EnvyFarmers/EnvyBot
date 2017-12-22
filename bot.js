@@ -81,8 +81,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				   perHour = totalIn24/24;
 				   totalUSD = totalIn24 * etnPrice;
 				   totalUSDperHour = perHour * etnPrice;
-				   newMessage += 'Total: ' + totalIn24.toFixed(2) + ' ETN - ( $' + totalUSD 'USD )\n'
-				   newMessage += 'Per Hour: ' + perHour.toFixed(2) + ' ETN - ( $' + totalUSDperHour 'USD )\n'
+				   newMessage += 'Total: ' + totalIn24.toFixed(2) + ' ETN - ( $' + totalUSD + 'USD )\n'
+				   newMessage += 'Per Hour: ' + perHour.toFixed(2) + ' ETN - ( $' + totalUSDperHour + 'USD )\n'
 				   newMessage += '```'
 				  
 				   bot.sendMessage({
