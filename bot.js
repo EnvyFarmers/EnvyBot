@@ -26,7 +26,6 @@ bot.on('ready', function (evt) {
 function getPrice(coin) {
 	var price = cc.price(coin,'USD')
 	.then(prices => {
-		logger.info(prices.USD);
 		return prices.USD
 	})	
 }
@@ -68,7 +67,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				  json: true
 				}
 				var etnPrice = getPrice('ETN');
-				logger.info(etnPrice);
 				
 				get.concat(opts, function (err, res, data) {
 				   if (err) throw err
@@ -84,7 +82,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				   } 
 				   perHour = totalIn24/24;
 				   totalUSD = totalIn24 * etnPrice;
+				   logger.info('etnPrice = ' + etnPrice);
+				   logger.info('totalUSD = ' + totalUSD);
 				   totalUSDperHour = perHour * etnPrice;
+				   logger.info('totalUSDperHour = ' + totalUSDperHour);
 				   newMessage += 'Total: ' + totalIn24.toFixed(2) + ' ETN - ( $' + totalUSD + 'USD )\n'
 				   newMessage += 'Per Hour: ' + perHour.toFixed(2) + ' ETN - ( $' + totalUSDperHour + 'USD )\n'
 				   newMessage += '```'
