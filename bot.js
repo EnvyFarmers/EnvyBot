@@ -60,9 +60,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				  json: true
 				}
 				var etnPrice;
-				 var price = cc.price(coin,'USD')
+				var price = cc.price(coin,'USD')
                 .then(prices => {
-					etnPrice = cc.price('ETN','USD')
+					etnPrice = prices.USD
                 })
 				
 				
