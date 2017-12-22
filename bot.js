@@ -47,9 +47,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 .then(prices => {
                    bot.sendMessage({
                        to: channelID,
-					   logger.info(coin)
                        message: '(' + coin +') : $' + prices.USD + ' USD'
                    });
+				   logger.info(coin)
                 })
             break;
 			
