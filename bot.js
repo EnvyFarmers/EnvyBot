@@ -47,6 +47,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 .then(prices => {
                    bot.sendMessage({
                        to: channelID,
+					   logger.info(coin)
                        message: '(' + coin +') : $' + prices.USD + ' USD'
                    });
                 })
@@ -63,7 +64,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				var price = cc.price('ETN','USD')
                 .then(prices => {
 					etnPrice = prices.USD
-					console.log(etnPrice)
+					logger.info(etnPrice)
                 })
 				
 				
