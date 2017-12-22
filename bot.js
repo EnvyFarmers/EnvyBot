@@ -23,6 +23,13 @@ bot.on('ready', function (evt) {
     logger.info(bot.username + ' - (' + bot.id + ')');
 });
 
+function getPrice(coin) {
+	var price = cc.price(coin,'USD')
+	.then(prices => {
+		return prices.USD
+	})	
+}
+
 bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
@@ -49,7 +56,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                        to: channelID,
                        message: '(' + coin +') : $' + prices.USD + ' USD'
                    });
-				   logger.info(coin)
                 })
             break;
 			
@@ -60,13 +66,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				  url: 'https://api.nanopool.org/v1/etn/paymentsday/'+auth.etnWallet,
 				  json: true
 				}
-				var etnPrice;
-				var price = cc.price('ETN','USD')
-                .then(prices => {
-					etnPrice = prices.USD
-					logger.info(etnPrice)
-                })
-				
+				var etnPrice = getPrice('ETN');
 				
 				get.concat(opts, function (err, res, data) {
 				   if (err) throw err
