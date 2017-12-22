@@ -23,7 +23,7 @@ bot.on('ready', function (evt) {
     logger.info(bot.username + ' - (' + bot.id + ')');
 });
 
-async function getPrice(coin) {
+function getPrice(coin) {
 	var price = cc.price(coin,'USD')
 	.then(prices => {
 		return prices.USD
@@ -81,7 +81,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					  newMessage += '\n'
 					  totalIn24 += payments[payment].amount;
 				   } 
-				   var etnPrice = await getPrice('ETN');
+				   var etnPrice = getPrice('ETN');
 				   logger.info('etnPrice2 = ' + etnPrice);
 				   perHour = totalIn24/24;
 				   totalUSD = totalIn24 * etnPrice;
