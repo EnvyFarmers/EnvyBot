@@ -26,6 +26,8 @@ bot.on('ready', function (evt) {
 function getPrice(coin) {
 	var price = cc.price(coin,'USD')
 	.then(prices => {
+		logger.info(coin)
+		logger.info(prices.USD)
 		return prices.USD
 	})	
 }
