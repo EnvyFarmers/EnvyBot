@@ -59,6 +59,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				  url: 'https://api.nanopool.org/v1/etn/paymentsday/'+auth.etnWallet,
 				  json: true
 				}
+				var etnPrice;
+				 var price = cc.price(coin,'USD')
+                .then(prices => {
+					etnPrice = cc.price('ETN','USD')
+                })
+				
 				
 				get.concat(opts, function (err, res, data) {
 				   if (err) throw err
@@ -73,7 +79,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 					  totalIn24 += payments[payment].amount;
 				   } 
 				   perHour = totalIn24/24;
-				   newMessage += 'Total: ' + totalIn24.toFixed(2) + 'ETN or ' + perHour.toFixed(2) + ' ETN/hour \n'
+				   totalUSD = totalIn24 * etnPrice;
+				   totalUSDperHour = perHour * etnPrice;
+				   newMessage += 'Total: ' + totalIn24.toFixed(2) + ' ETN - ( $' + totalUSD 'USD )\n'
+				   newMessage += 'Per Hour: ' + perHour.toFixed(2) + ' ETN - ( $' + totalUSDperHour 'USD )\n'
 				   newMessage += '```'
 				  
 				   bot.sendMessage({
