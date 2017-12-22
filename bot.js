@@ -23,11 +23,11 @@ bot.on('ready', function (evt) {
     logger.info(bot.username + ' - (' + bot.id + ')');
 });
 
-function getPrice(coin) {
+async function getPrice(coin) {
 	var price = cc.price(coin,'USD')
 	.then(prices => {
 		return prices.USD
-	})	
+	})
 }
 
 bot.on('message', function (user, userID, channelID, message, evt) {
