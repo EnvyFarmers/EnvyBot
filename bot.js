@@ -116,8 +116,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                      if (err) throw err
                      var newMessage = '```==============  Hashrates ============= \n'
                      var groups = data.groupList
-					 logger.info(data)
-                     var totalHash = data.totalHashrates5s
+                     var totalHash = data.totalHashrate5s
                      
                      for(var group in groups) {
                         newMessage += '-' + groups[group].name + '-\n'
@@ -126,7 +125,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                            newMessage += '   [' + miners[miner].name + '] ' + miners[miner].speedInfo.hashrate + '\n'
                         } 
                      }
-					 newMessage += '   Total Hashrate:' + totalHash + '\n'
+					 newMessage += '   Total Hashrate:' +  data.totalHashrate5s + '\n'
 
                      newMessage += '```'
                     
