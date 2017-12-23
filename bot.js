@@ -116,6 +116,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                      if (err) throw err
                      var newMessage = '```==============  Hashrates ============= \n'
                      var groups = data.groupList
+					 logger.info(data)
                      var totalHash = data.totalHashrates5s
                      
                      for(var group in groups) {
