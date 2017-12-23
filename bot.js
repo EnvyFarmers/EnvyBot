@@ -125,6 +125,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                            newMessage += '   [' + miners[miner].name + '] ' + miners[miner].speedInfo.hashrate + '\n'
                         } 
                      }
+					 newMessage += '   Total Hashrate:' + totalHash + '\n'
 
                      newMessage += '```'
                     
