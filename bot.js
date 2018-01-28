@@ -36,7 +36,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     if (message.substring(0, 1) == '!') {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
-       
+
         args = args.splice(1);
         switch(cmd) {
             // !ping
@@ -50,11 +50,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'price':
                 var coin = args[0];
 
-                var price = cc.price(coin,'USD')
+                var price = cc.priceFull(coin,'USD')
                 .then(prices => {
+                   var newMessage = '```==============  ' + coin + ' ============= \n'
+                   newMessage = price;
                    bot.sendMessage({
                        to: channelID,
-                       message: '(' + coin +') : $' + prices.USD + ' USD'
+                       //message: '(' + coin +') : $' + prices.USD + ' USD'
+                       message: price
                    });
                 })
             break;
