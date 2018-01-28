@@ -58,6 +58,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                   var coinPrice = prices[coin];
                   logger.info(coinPrice)
                   var keys2 = Object.keys(coinPrice)
+                  logger.info(keys2)
+                  var coinPrice2 = coinPrice.USD
+                  logger.info(coinPrice2)
                    var newMessage = '```==============  ' + coin + ' ============= \n'
                    newMessage +=  'Price: ' + coinPrice.price + ' ( ' + coinPrice.CHANGEPCT24HOUR + ' )' + '\n'
                    newMessage +=  'Volume: ' + coinPrice.VOLUME24HOUR + '\n'
