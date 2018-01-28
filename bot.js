@@ -54,7 +54,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 .then(prices => {
                   logger.info(prices)
                    var newMessage = '```==============  ' + coin + ' ============= \n'
-                   newMessage +=  'Price: ' + prices.PRICE + '( ' + prices.CHANGEPCT24HOUR + ' )' + '\n'
+                   newMessage +=  'Price: ' + prices.price + ' ( ' + prices.CHANGEPCT24HOUR + ' )' + '\n'
                    newMessage +=  'Volume: ' + prices.VOLUME24HOUR + '\n'
                    newMessage +=  'MarketCap: ' + prices.MKTCAP + '\n'
                    newMessage +=  '```'
