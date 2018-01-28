@@ -62,9 +62,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                   var coinPrice2 = coinPrice.USD
                   logger.info(coinPrice2)
                    var newMessage = '```==============  ' + coin + ' ============= \n'
-                   newMessage +=  'Price: ' + coinPrice.price + ' ( ' + coinPrice.CHANGEPCT24HOUR + ' )' + '\n'
-                   newMessage +=  'Volume: ' + coinPrice.VOLUME24HOUR + '\n'
-                   newMessage +=  'MarketCap: ' + coinPrice.MKTCAP + '\n'
+                   newMessage +=  'Price: ' + coinPrice2.price + ' ( ' + coinPrice2.CHANGEPCT24HOUR + ' )' + '\n'
+                   newMessage +=  'Volume: ' + coinPrice2.VOLUME24HOUR + '\n'
+                   newMessage +=  'MarketCap: ' + coinPrice2.MKTCAP + '\n'
                    newMessage +=  '```'
                    bot.sendMessage({
                        to: channelID,
