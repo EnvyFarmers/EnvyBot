@@ -94,7 +94,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
              logger.info('etnPrice2 = ' + etnPrices);
              perHour = totalIn24/24;
              totalUSD = totalIn24 * etnPrices;
-             logger.info('etnPrice = ' + etnPrices);
+             var keys = Object.keys(etnPrices);
+             logger.info('etnPrice = ' + keys);
              logger.info('totalUSD = ' + totalUSD);
              totalUSDperHour = perHour * etnPrices;
              logger.info('totalUSDperHour = ' + totalUSDperHour);
