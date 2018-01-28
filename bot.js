@@ -53,9 +53,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 var price = cc.priceFull(coin,'USD')
                 .then(prices => {
                    var newMessage = '```==============  ' + coin + ' ============= \n'
-                   newMessage +=  'Price: ' + prices.PRICE + '(' + prices.CHANGEPCT24HOUR.toFixed(2) + ')' + '\n'
-                   newMessage +=  'Volume: ' + prices.VOLUME24HOUR.toFixed(2) + '\n'
-                   newMessage +=  'MarketCap: ' + prices.MKTCAP.toFixed(2) + '\n'
+                   newMessage +=  'Price: ' + prices.PRICE + '(' + prices.CHANGEPCT24HOUR + ')' + '\n'
+                   newMessage +=  'Volume: ' + prices.VOLUME24HOUR + '\n'
+                   newMessage +=  'MarketCap: ' + prices.MKTCAP + '\n'
                    newMessage +=  '```'
                    bot.sendMessage({
                        to: channelID,
