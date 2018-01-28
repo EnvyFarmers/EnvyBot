@@ -52,7 +52,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
                 var price = cc.priceFull(coin,'USD')
                 .then(prices => {
-                   var coinPrice = price[coin].USD;
+                   var coin = price[coin];
+                   logger.info(coin)
+                   var coinPrice = coin.USD;
                    logger.info(coinPrice)
                    var newMessage = '```==============  ' + coin + ' ============= \n'
                    // newMessage +=  'Price: ' + coinPrice.PRICE + '(' + coinPrice.CHANGEPCT24HOUR.toFixed(2) + ')' + '\n'
