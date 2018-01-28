@@ -90,17 +90,11 @@ bot.on('message', function (user, userID, channelID, message, evt) {
               newMessage += '\n'
               totalIn24 += payments[payment].amount;
              } 
-             
-             logger.info('etnPrice2 = ' + etnPrices);
              perHour = totalIn24/24;
              totalUSD = totalIn24 * etnPrices.USD;
-             var keys = Object.keys(etnPrices);
-             logger.info('etnPrice = ' + keys);
-             logger.info('totalUSD = ' + totalUSD);
              totalUSDperHour = perHour * etnPrices.USD;
-             logger.info('totalUSDperHour = ' + totalUSDperHour);
-             newMessage += 'Total: ' + totalIn24.toFixed(2) + ' ETN - ( $' + totalUSD.toFixed(2) + 'USD )\n'
-             newMessage += 'Per Hour: ' + perHour.toFixed(2) + ' ETN - ( $' + totalUSDperHour.toFixed(2) + 'USD )\n'
+             newMessage += 'Total: ' + totalIn24.toFixed(2) + ' ETN - ( $' + totalUSD.toFixed(2) + ' )\n'
+             newMessage += 'Per Hour: ' + perHour.toFixed(2) + ' ETN - ( $' + totalUSDperHour.toFixed(2) + ' )\n'
              newMessage += '```'
             
              bot.sendMessage({
