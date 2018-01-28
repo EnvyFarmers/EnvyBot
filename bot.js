@@ -76,12 +76,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				  url: 'https://api.nanopool.org/v1/etn/paymentsday/'+auth.etnWallet,
 				  json: true
 				}
-				var etnPrice = getPrice('ETN');
-				logger.info('etnPrice1 = ' + etnPrice);
-				
 				get.concat(opts, function (err, res, data) {
 				   if (err) throw err
-          var etnPrice = getPrice('ETN')
+          var etnPrice = cc.getPrice('ETN')
           .then(etnPrices => {
              var newMessage = '```==============  Payments in the last 24 Hours ============= \n'
              var payments = data.data
