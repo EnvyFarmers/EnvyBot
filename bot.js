@@ -81,32 +81,37 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				
 				get.concat(opts, function (err, res, data) {
 				   if (err) throw err
-				   var newMessage = '```==============  Payments in the last 24 Hours ============= \n'
-				   var payments = data.data
-				   var totalIn24 = 0
-				   for(var payment in payments) {
-			  	      var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-				      d.setUTCSeconds(payments[payment].date);
-					  newMessage += '[' + d.toLocaleString("en-US") + '] ' + payments[payment].amount.toFixed(2)
-					  newMessage += '\n'
-					  totalIn24 += payments[payment].amount;
-				   } 
-				   var etnPrice = getPrice('ETN');
-				   logger.info('etnPrice2 = ' + etnPrice);
-				   perHour = totalIn24/24;
-				   totalUSD = totalIn24 * etnPrice;
-				   logger.info('etnPrice = ' + etnPrice);
-				   logger.info('totalUSD = ' + totalUSD);
-				   totalUSDperHour = perHour * etnPrice;
-				   logger.info('totalUSDperHour = ' + totalUSDperHour);
-				   newMessage += 'Total: ' + totalIn24.toFixed(2) + ' ETN - ( $' + totalUSD + 'USD )\n'
-				   newMessage += 'Per Hour: ' + perHour.toFixed(2) + ' ETN - ( $' + totalUSDperHour + 'USD )\n'
-				   newMessage += '```'
-				  
-				   bot.sendMessage({
-                      to: channelID,
-                      message: newMessage
-                   });
+          var etnPrice = getPrice('ETN')
+          .then(etnPrices => {
+             var newMessage = '```==============  Payments in the last 24 Hours ============= \n'
+             var payments = data.data
+             var totalIn24 = 0
+             for(var payment in payments) {
+                  var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+                d.setUTCSeconds(payments[payment].date);
+              newMessage += '[' + d.toLocaleString("en-US") + '] ' + payments[payment].amount.toFixed(2)
+              newMessage += '\n'
+              totalIn24 += payments[payment].amount;
+             } 
+             
+             logger.info('etnPrice2 = ' + etnPrices);
+             perHour = totalIn24/24;
+             totalUSD = totalIn24 * etnPrices;
+             logger.info('etnPrice = ' + etnPrices);
+             logger.info('totalUSD = ' + totalUSD);
+             totalUSDperHour = perHour * etnPrices;
+             logger.info('totalUSDperHour = ' + totalUSDperHour);
+             newMessage += 'Total: ' + totalIn24.toFixed(2) + ' ETN - ( $' + totalUSD + 'USD )\n'
+             newMessage += 'Per Hour: ' + perHour.toFixed(2) + ' ETN - ( $' + totalUSDperHour + 'USD )\n'
+             newMessage += '```'
+            
+             bot.sendMessage({
+                        to: channelID,
+                        message: newMessage
+                     });
+          })
+
+				
 				})
 			break;
 			
