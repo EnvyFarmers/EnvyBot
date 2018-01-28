@@ -58,9 +58,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                    var newMessage = '```============== ' + coin + ' ==============\n'
                    var percentChangeUD = ''
                    if(coinPriceUSD.CHANGEPCT24HOUR > 0) percentChangeUD = '+'
-                   newMessage +=  'Price: ' + coinPriceUSD.PRICE + ' ( ' + percentChangeUD + coinPriceUSD.CHANGEPCT24HOUR.toFixed(2) + '% )' + '\n'
+                   newMessage +=  'Price: $' + coinPriceUSD.PRICE + ' ( ' + percentChangeUD + coinPriceUSD.CHANGEPCT24HOUR.toFixed(2) + '% )' + '\n'
                    newMessage +=  'Volume: ' + coinPriceUSD.VOLUME24HOUR.toFixed(2)  + '\n'
-                   newMessage +=  'MarketCap: ' + coinPriceUSD.MKTCAP.toFixed(2)  + '\n'
+                   newMessage +=  'MarketCap: $' + coinPriceUSD.MKTCAP.toFixed(2)  + '\n'
                    newMessage +=  '```'
                    bot.sendMessage({
                        to: channelID,
