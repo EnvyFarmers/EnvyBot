@@ -53,18 +53,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 var price = cc.priceFull(coin,'USD')
                 .then(prices => {
                   var keys = Object.keys(prices)
-                  logger.info(keys)
-                  logger.info(prices[coin])
                   var coinPrice = prices[coin];
-                  logger.info(coinPrice)
-                  var keys2 = Object.keys(coinPrice)
-                  logger.info(keys2)
-                  var coinPrice2 = coinPrice.USD
-                  logger.info(coinPrice2)
+                  var coinPriceUSD = coinPrice.USD
                    var newMessage = '```==============  ' + coin + ' ============= \n'
-                   newMessage +=  'Price: ' + coinPrice2.price + ' ( ' + coinPrice2.CHANGEPCT24HOUR + ' )' + '\n'
-                   newMessage +=  'Volume: ' + coinPrice2.VOLUME24HOUR + '\n'
-                   newMessage +=  'MarketCap: ' + coinPrice2.MKTCAP + '\n'
+                   newMessage +=  'Price: ' + coinPriceUSD.PRICE + ' ( ' + coinPriceUSD.CHANGEPCT24HOUR.toFixed(2) + ' )' + '\n'
+                   newMessage +=  'Volume: ' + coinPriceUSD.VOLUME24HOUR.toFixed(2)  + '\n'
+                   newMessage +=  'MarketCap: ' + coinPriceUSD.MKTCAP.toFixed(2)  + '\n'
                    newMessage +=  '```'
                    bot.sendMessage({
                        to: channelID,
