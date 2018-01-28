@@ -52,12 +52,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
                 var price = cc.priceFull(coin,'USD')
                 .then(prices => {
+                   var coinPrice = price[coin];
                    var newMessage = '```==============  ' + coin + ' ============= \n'
-                   newMessage = price;
+                   newMessage +=  'Price: ' + coinPrice.PRICE + '(' + coinPrice.CHANGEPCT24HOUR.toFixed(2) + ')' + '\n'
+                   newMessage +=  'Volume: ' + coinPrice.VOLUME24HOUR.toFixed(2) + '\n'
+                   newMessage +=  'MarketCap: ' + coinPrice.MKTCAP.toFixed(2) + '\n'
+                   newMessage +=  '```'
                    bot.sendMessage({
                        to: channelID,
-                       //message: '(' + coin +') : $' + prices.USD + ' USD'
-                       message: price
+                       message: newMessage
                    });
                 })
             break;
