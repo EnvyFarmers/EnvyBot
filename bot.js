@@ -78,7 +78,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 				}
 				get.concat(opts, function (err, res, data) {
 				   if (err) throw err
-          var etnPrice = cc.getPrice('ETN')
+          var etnPrice = cc.price('ETN','USD');
           .then(etnPrices => {
              var newMessage = '```==============  Payments in the last 24 Hours ============= \n'
              var payments = data.data
