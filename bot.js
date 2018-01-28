@@ -53,7 +53,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 var price = cc.priceFull(coin,'USD')
                 .then(prices => {
                   
-                   logger.info(price)
+                   logger.info(prices)
                    var coin = price[coin];
                    logger.info(coin)
                    // var coinPrice = coin.USD;
